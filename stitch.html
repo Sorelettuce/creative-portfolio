@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A Hatch preview and a finished patch make it possible to compare stitch texture, edge definition, and contrast across a digital file and a physical object.">
+  <meta name="theme-color" content="#f5f4ee">
+  <title>Digital to physical | Jennifer Raymond</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.js" defer></script>
+  <script src="stitch-viewer.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-head">
+    <div class="wrap">
+      <a class="wordmark" href="index.html"><span class="monogram" aria-hidden="true">JR</span>Jennifer Raymond</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#about">About</a>
+        <a href="https://www.linkedin.com/in/jray000">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="case-top wrap">
+      <a href="index.html#work" class="crumb text-link">All projects</a>
+      <p class="label green-label">Machine embroidery · Real-time web visualization</p>
+      <h1>Digital to physical</h1>
+      <p class="lede">A Hatch preview and a finished patch make it possible to compare stitch texture, edge definition, and contrast across a digital file and a physical object.</p>
+      <dl class="case-facts"><div><dt class="label">Context</dt><dd>My Threaded Heart</dd></div><div><dt class="label">My contribution</dt><dd>Hatch adaptation, patch production and photography</dd></div><div><dt class="label">Media</dt><dd>Hatch TrueView, finished stitch-out, WebGL study</dd></div></dl>
+    </div>
+    <section class="artifact-band" aria-labelledby="gallery-heading"><div class="wrap">
+      <div class="artifact-heading"><p class="label green-label">Project gallery</p><h2 id="gallery-heading">One design, two colorways</h2><p>This fabrication study follows a sourced motif. The Hatch preview and the finished piece share the circular border and mirrored lettering, with different thread colorways.</p></div>
+      <div class="artifact-grid"><figure>
+      <a class="lightbox-trigger" data-fit="contain" href="patch-simulation.webp" aria-label="Enlarge Hatch TrueView"><img src="patch-simulation.webp" alt="Hatch TrueView stitch simulation of the circular Be Different design in red and blue" loading="lazy"></a>
+      <figcaption><strong>Hatch TrueView</strong>Embedded preview from the Hatch project, shown in the archived red-and-blue colorway.</figcaption>
+    </figure><figure>
+      <a class="lightbox-trigger" href="patch-finished.webp" aria-label="Enlarge Finished stitch-out"><img src="patch-finished.webp" alt="Finished circular Be Different patch with orange lettering on black material" loading="lazy"></a>
+      <figcaption><strong>Finished stitch-out</strong>Product photograph from My Threaded Heart showing the orange-on-black production colorway.</figcaption>
+    </figure><figure>
+      <a class="lightbox-trigger" data-fit="contain" href="patch-flat.webp" aria-label="Enlarge Flat design view"><img src="patch-flat.webp" alt="Flat design preview of the circular motif from the Hatch project" loading="lazy"></a>
+      <figcaption><strong>Flat design view</strong>The same Hatch project’s flat preview makes the letter placement and border easier to isolate.</figcaption>
+    </figure><figure>
+      <a class="lightbox-trigger" href="patch-detail.webp" aria-label="Enlarge Fabric and thread detail"><img src="patch-detail.webp" alt="Close view of the black woven ground, orange satin stitching and the raised edge" loading="lazy"></a>
+      <figcaption><strong>Fabric and thread detail</strong>Original product photograph showing the satin lettering, stitched edge and woven ground.</figcaption>
+    </figure></div>
+    </div></section>
+    <section class="case-story" id="process" aria-labelledby="process-heading">
+      <div class="wrap story-grid">
+        <div><p class="label green-label">Process</p><h2 id="process-heading">Reading the stitch-out</h2></div>
+        <div class="story-copy">
+          <h3>Preview the construction</h3>
+          <p>The Hatch TrueView image shows where the stitched lettering sits in relation to the edge. The archived DST exports record a 76.2 mm edition and a larger edition around 96 mm across. The preview gives me a way to compare the spacing and edge at the intended size before stitching on fabric.</p>
+          <h3>Inspect the physical piece</h3>
+          <p>The production photograph shows a raised edge and a coarse black ground. The bright lettering makes the unusual orientation legible, while the physical edge is where the texture and finish are easiest to see.</p>
+          <h3>Show the surface clearly</h3>
+          <p>A close product image lets a buyer read how the design sits on fabric. The two views here document fabrication and photography for My Threaded Heart.</p>
+        </div>
+      </div>
+    </section>
+    <section class="artifact-band" id="hatch-file" aria-labelledby="hatch-file-heading"><div class="wrap story-grid">
+      <div class="artifact-heading">
+        <p class="label green-label">File study · Hatch embroidery</p>
+        <h2 id="hatch-file-heading">Inside a native Hatch file</h2>
+        <p><strong>Revive.EMB</strong> is a separate design sample from my Hatch archive. Its embedded TrueView preview shows a gold fill, raised lettering and a dark border.</p>
+        <p>The EMB keeps the design editable in Hatch. A DST carries the stitch and machine commands used for production.</p>
+      </div>
+      <div class="artifact-grid"><figure>
+      <a class="lightbox-trigger" data-fit="contain" href="hatch-revive-preview.webp" aria-label="Enlarge Revive.EMB · Embedded TrueView"><img src="hatch-revive-preview.webp" alt="TrueView image of the gold word REVIVE above a filled triangle with a dark stitched edge" loading="lazy"></a>
+      <figcaption><strong>Revive.EMB · Embedded TrueView</strong>Preview extracted from the native project file.</figcaption>
+    </figure></div>
+    </div></section>
+    <section class="demo-band" id="viewer" aria-labelledby="viewer-heading"><div class="wrap">
+      <div class="artifact-heading">
+        <p class="label">Real-time 3D · Portfolio demo</p>
+        <h2 id="viewer-heading">Explore a stitched surface</h2>
+        <p>This WebGL swatch uses sample geometry built for this portfolio with Codex. Rotate it to see stitch height, or scrub through the order in which the rows appear.</p>
+      </div>
+      <div class="viewer">
+        <div class="viewer-stage">
+          <canvas id="stitch-canvas" role="img" aria-label="Rotatable three-dimensional embroidery swatch with a raised border around rows of stitches"></canvas>
+          <img id="stitch-fallback" src="stitch-swatch.webp" alt="Still of the completed embroidery swatch shown at an angle" hidden>
+          <noscript><img src="stitch-swatch.webp" alt="Still of the completed embroidery swatch shown at an angle"></noscript>
+        </div>
+        <div class="viewer-controls" id="stitch-controls">
+          <div><label for="stitch-progress">Stitch progress <output id="stitch-count" for="stitch-progress">100%</output></label><input type="range" id="stitch-progress" min="0" max="100" value="100"></div>
+          <div><label for="stitch-turn">Rotation <output id="stitch-angle" for="stitch-turn">-26°</output></label><input type="range" id="stitch-turn" min="-75" max="75" value="-26"></div>
+          <button class="button button-light" type="button" id="stitch-reset">Reset view</button>
+          <p>Drag the swatch to turn it. Use the sliders with the keyboard to rotate it or reveal successive passes.</p>
+        </div>
+      </div>
+      <noscript><style>#stitch-canvas,#stitch-controls{display:none}</style></noscript>
+    </div></section>
+    <section class="case-story" id="implementation" aria-labelledby="implementation-heading">
+      <div class="wrap story-grid">
+        <div><p class="label green-label">WebGL implementation</p><h2 id="implementation-heading">How the viewer works</h2></div>
+        <div class="story-copy">
+          <p>Each sample strand is a short strip of triangles that rises from the fabric and falls back into it. The viewer draws the fabric first and adds the strands in sequence as the progress slider moves. A depth buffer keeps the raised geometry in view as the swatch turns.</p>
+          <p>The model redraws when it receives input or when its viewport changes. Browser tests confirmed that rotation and progress changed the render, reset restored the opening view, and a still appeared when WebGL was unavailable.</p>
+        </div>
+      </div>
+    </section>
+    <div class="wrap next"><a class="text-link" href="index.html#work">All projects</a><a class="text-link" href="commerce.html">Next project · Tools for embroidery sellers</a></div>
+  </main>
+  <footer class="site-footer"><div class="wrap"><p>Jennifer Raymond · Creative technology portfolio</p><div class="footer-links"><a href="index.html#work">Selected work</a><a href="https://www.linkedin.com/in/jray000">LinkedIn</a></div></div></footer>
+  <dialog class="lightbox" aria-label="Expanded gallery image"><div class="lightbox-bar"><p data-lightbox-caption></p><form method="dialog"><button class="close" type="submit">Close</button></form></div><img alt=""></dialog>
+</body>
+</html>

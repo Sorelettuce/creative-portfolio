@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A controlled WebGL scene shows how a fast sphere can cross a thin wall between simulation updates. Run two methods against the same setup and compare the result.">
+  <meta name="theme-color" content="#f5f4ee">
+  <title>Collision test | Jennifer Raymond</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.js" defer></script>
+  <script src="collision-lab.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-head">
+    <div class="wrap">
+      <a class="wordmark" href="index.html"><span class="monogram" aria-hidden="true">JR</span>Jennifer Raymond</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#about">About</a>
+        <a href="https://www.linkedin.com/in/jray000">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="case-top wrap">
+      <a href="index.html#work" class="crumb text-link">All projects</a>
+      <p class="label green-label">New portfolio experiment · Built with Codex</p>
+      <h1>Collision test</h1>
+      <p class="lede">A controlled WebGL scene shows how a fast sphere can cross a thin wall between simulation updates. Run two methods against the same setup and compare the result.</p>
+      <dl class="case-facts"><div><dt class="label">Scenario</dt><dd>Sphere against a static wall</dd></div><div><dt class="label">Fixed simulation step</dt><dd>125 ms · 8 updates per second</dd></div><div><dt class="label">Pass condition</dt><dd>Detect first contact and rebound on the near side</dd></div></dl>
+    </div>
+    <section class="demo-band" id="simulation" aria-labelledby="simulation-heading"><div class="wrap">
+      <div class="artifact-heading"><p class="label">Interactive evaluation</p><h2 id="simulation-heading">Can the sphere pass through the wall?</h2><p>Run both methods at the same 125 ms simulation step. The sphere starts on the near side of the barrier and moves toward it.</p></div>
+      <div class="viewer">
+        <div class="viewer-stage">
+          <canvas id="collision-canvas" role="img" aria-label="Three-dimensional scene with a gold sphere approaching a thin vertical barrier"></canvas>
+          <p id="collision-fallback" hidden>The WebGL scene is unavailable on this device. Run either method to see its numerical result.</p>
+          <noscript><p>The endpoint check misses and ends at +3.40 m. The swept check detects contact at 57.9 ms and rebounds to −2.80 m.</p><style>#collision-canvas,#collision-controls{display:none}</style></noscript>
+        </div>
+        <div class="viewer-controls" id="collision-controls">
+          <div class="lab-buttons">
+            <button class="button button-light" type="button" id="collision-discrete">Run endpoint check</button>
+            <button class="button button-light" type="button" id="collision-swept">Run swept check</button>
+            <button class="button" type="button" id="collision-reset">Reset</button>
+          </div>
+          <output class="lab-result" id="collision-result" aria-live="polite">Ready. Run a method to see where the sphere ends up.</output>
+          <p>The animation slows down the step so you can inspect it. The solver uses the same simulated time in both runs.</p>
+        </div>
+      </div>
+    </div></section>
+    <section class="case-story" id="evaluation" aria-labelledby="evaluation-heading">
+      <div class="wrap story-grid">
+        <div><p class="label green-label">Evaluation notes</p><h2 id="evaluation-heading">Reproduce the failure</h2></div>
+        <div class="story-copy">
+          <h3>Set the expected behavior</h3>
+          <p>The sphere starts at −3.60 m and moves at +56 m/s toward a 0.20 m wall centered at 0 m. Its radius is 0.26 m. First contact should occur when the center reaches −0.36 m.</p>
+          <h3>Observe the endpoint check</h3>
+          <p>A sampled overlap test sees the sphere clear of the wall at both ends of the step. Its path crossed the wall between samples, so it finishes at +3.40 m without an overlap event. This is tunneling.</p>
+          <h3>Use a swept test as the reference</h3>
+          <p>Check the movement segment against the wall’s near face, offset by the sphere’s radius. The intersection gives first contact at 57.9 ms. Apply a restitution coefficient of 0.65 and use the remaining time to advance the rebound. The sphere ends at −2.80 m.</p>
+        </div>
+      </div>
+    </section>
+    <section class="case-story" id="review-result" aria-labelledby="review-result-heading">
+      <div class="wrap story-grid">
+        <div><p class="label green-label">Prototype scope</p><h2 id="review-result-heading">Review the result</h2></div>
+        <div class="story-copy">
+          <p>The two runs share geometry and simulated timing, so the solver is the variable under test. The reference is limited to a single sphere moving on one axis toward a static wall. The outcome appears in text as well as in the scene, and reduced-motion mode shows the result immediately.</p>
+        </div>
+      </div>
+    </section>
+    <div class="wrap next"><a class="text-link" href="index.html#work">All projects</a><a class="text-link" href="stitch.html">Next project · Digital to physical</a></div>
+  </main>
+  <footer class="site-footer"><div class="wrap"><p>Jennifer Raymond · Creative technology portfolio</p><div class="footer-links"><a href="index.html#work">Selected work</a><a href="https://www.linkedin.com/in/jray000">LinkedIn</a></div></div></footer>
+  <dialog class="lightbox" aria-label="Expanded gallery image"><div class="lightbox-bar"><p data-lightbox-caption></p><form method="dialog"><button class="close" type="submit">Close</button></form></div><img alt=""></dialog>
+</body>
+</html>

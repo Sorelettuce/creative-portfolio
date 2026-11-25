@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Two browser-based projects bring the information a maker needs to check closer to the listing they’re about to publish.">
+  <meta name="theme-color" content="#f5f4ee">
+  <title>Tools for embroidery sellers | Jennifer Raymond</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.js" defer></script>
+  <script src="listing-demo.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-head">
+    <div class="wrap">
+      <a class="wordmark" href="index.html"><span class="monogram" aria-hidden="true">JR</span>Jennifer Raymond</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#about">About</a>
+        <a href="https://www.linkedin.com/in/jray000">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="case-top wrap">
+      <a href="index.html#work" class="crumb text-link">All projects</a>
+      <p class="label green-label">Workflow design · AI-assisted prototyping</p>
+      <h1>Tools for embroidery sellers</h1>
+      <p class="lede">Two browser-based projects bring the information a maker needs to check closer to the listing they’re about to publish.</p>
+      <dl class="case-facts"><div><dt class="label">My contribution</dt><dd>Requirements, product decisions and hands-on testing</dd></div><div><dt class="label">Projects</dt><dd>TikTok Shop Optimizer and Embroidery Listing Studio</dd></div><div><dt class="label">Delivery</dt><dd>Local prototype and private web iterations</dd></div></dl>
+    </div>
+    <figure class="wrap main-figure">
+      <img class="case-lead-image contain" src="optimizer-cover.webp" alt="The TikTok Shop Optimizer dashboard with sample listings and an editable suggested draft" fetchpriority="high">
+      <figcaption>Local TikTok Shop Optimizer v0.6 shown with built-in example listings.</figcaption>
+    </figure>
+    <section class="case-story" id="optimizer" aria-labelledby="optimizer-heading">
+      <div class="wrap story-grid">
+        <div><p class="label green-label">Case study</p><h2 id="optimizer-heading">TikTok Shop Optimizer</h2></div>
+        <div class="story-copy">
+          <h3>Bring bulk edits into a review queue</h3>
+          <p>The local prototype accepted a product link or ID, or a bulk XLSX or ZIP export. It applied rules to titles and descriptions, surfaced issues, and offered editable drafts. The review step kept the current listing visible alongside its proposed changes.</p>
+          <h3>Preserve the seller’s workbook</h3>
+          <p>In the batch workflow, the prototype stored the review state locally in IndexedDB. It exported approved title and description edits to a copy of the workbook, preserving the original import and leaving other fields in place.</p>
+          <h3>Introduce AI as an explicit decision</h3>
+          <p>Later private iterations added an optional AI rewrite and a step for confirming product facts, including sizes. I worked through how a seller could practice, review a suggestion, and choose which edits to apply before manually making changes live.</p>
+        </div>
+      </div>
+    </section>
+    <section class="demo-band" id="listing-demo-section" aria-labelledby="listing-demo-heading"><div class="wrap">
+      <div class="artifact-heading"><p class="label">Interactive portfolio demo</p><h2 id="listing-demo-heading">Check a sample listing</h2><p>This browser-only demo uses fictional text and three checks from the local Optimizer prototype. Edit the listing and check it again.</p></div>
+      <div class="demo-panel">
+        <form id="listing-demo">
+          <label for="demo-title">Listing title</label>
+          <input id="demo-title" name="title" maxlength="160" value="Blue Heron Embroidered Patch">
+          <label for="demo-description">Description</label>
+          <textarea id="demo-description" name="description" maxlength="1500">A fun design.</textarea>
+          <button class="button button-light" type="submit">Check listing</button>
+        </form>
+        <div id="listing-feedback" class="listing-feedback" aria-live="polite"><h3>Review feedback</h3><p>Check the sample to see which product details are missing.</p></div>
+      </div>
+      <noscript><p>The listing demo requires JavaScript.</p></noscript>
+    </div></section>
+    <section class="case-story" id="listing-studio" aria-labelledby="listing-studio-heading">
+      <div class="wrap story-grid">
+        <div><p class="label green-label">Case study</p><h2 id="listing-studio-heading">Embroidery Listing Studio</h2></div>
+        <div class="story-copy">
+          <h3>Use the production files as the starting point</h3>
+          <p>I specified a DST or ZIP upload workflow that could present all detected sizes. The draft needed to describe the physical item the buyer would receive, including practical choices like backing.</p>
+          <h3>Translate production terms for the buyer</h3>
+          <p>In testing, I flagged terms like “in the hoop” when they described how a design is produced. I guided revisions so the generated listing would use language a patch buyer could act on and retain the details the maker had confirmed.</p>
+          <ol class="process"><li><strong>Import.</strong> Start with a DST file or a ZIP of size variants.</li><li><strong>Verify.</strong> Review detected sizes and confirm the details relevant to the physical product.</li><li><strong>Revise.</strong> Review the AI-assisted draft and clarify the language before using it.</li></ol>
+        </div>
+      </div>
+    </section>
+    <div class="wrap next"><a class="text-link" href="index.html#work">All projects</a><a class="text-link" href="game.html">Next project · The Thread Loft</a></div>
+  </main>
+  <footer class="site-footer"><div class="wrap"><p>Jennifer Raymond · Creative technology portfolio</p><div class="footer-links"><a href="index.html#work">Selected work</a><a href="https://www.linkedin.com/in/jray000">LinkedIn</a></div></div></footer>
+  <dialog class="lightbox" aria-label="Expanded gallery image"><div class="lightbox-bar"><p data-lightbox-caption></p><form method="dialog"><button class="close" type="submit">Close</button></form></div><img alt=""></dialog>
+</body>
+</html>
