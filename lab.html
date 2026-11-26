@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A controlled WebGL scene shows how a fast sphere can cross a thin wall between simulation updates. Run two methods against the same setup and compare the result.">
+  <meta name="description" content="Check two archived DST exports of the Be Different patch. A design can be smaller than the stitch field and still cross an edge when its saved origin is off-center.">
   <meta name="theme-color" content="#f5f4ee">
-  <title>Collision test | Jennifer Raymond</title>
+  <title>Will it fit the hoop? | Jennifer Raymond</title>
   <link rel="stylesheet" href="styles.css">
   <script src="site.js" defer></script>
-  <script src="collision-lab.js" defer></script>
+  <script src="hoop-fit.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -25,48 +25,40 @@
   <main id="main">
     <div class="case-top wrap">
       <a href="index.html#work" class="crumb text-link">All projects</a>
-      <p class="label green-label">New portfolio experiment · Built with Codex</p>
-      <h1>Collision test</h1>
-      <p class="lede">A controlled WebGL scene shows how a fast sphere can cross a thin wall between simulation updates. Run two methods against the same setup and compare the result.</p>
-      <dl class="case-facts"><div><dt class="label">Scenario</dt><dd>Sphere against a static wall</dd></div><div><dt class="label">Fixed simulation step</dt><dd>125 ms · 8 updates per second</dd></div><div><dt class="label">Pass condition</dt><dd>Detect first contact and rebound on the near side</dd></div></dl>
+      <p class="label green-label">Embroidery workflow · Portfolio tool built with Codex</p>
+      <h1>Will it fit the hoop?</h1>
+      <p class="lede">Check two archived DST exports of the Be Different patch. A design can be smaller than the stitch field and still cross an edge when its saved origin is off-center.</p>
+      <dl class="case-facts"><div><dt class="label">Project</dt><dd>Be Different patch</dd></div><div><dt class="label">Source</dt><dd>Dimensions from two archived DST headers</dd></div><div><dt class="label">Check</dt><dd>Clearance to the nearest edge of the stitch field</dd></div></dl>
     </div>
-    <section class="demo-band" id="simulation" aria-labelledby="simulation-heading"><div class="wrap">
-      <div class="artifact-heading"><p class="label">Interactive evaluation</p><h2 id="simulation-heading">Can the sphere pass through the wall?</h2><p>Run both methods at the same 125 ms simulation step. The sphere starts on the near side of the barrier and moves toward it.</p></div>
+    <section class="demo-band hoop-band" id="hoop-fit" aria-labelledby="hoop-fit-heading"><div class="wrap">
+      <div class="artifact-heading"><p class="label">Machine setup</p><h2 id="hoop-fit-heading">Compare size and placement</h2><p>Try centering the 3-inch export in the 90 mm field, then select the larger export to see what changes.</p></div>
       <div class="viewer">
-        <div class="viewer-stage">
-          <canvas id="collision-canvas" role="img" aria-label="Three-dimensional scene with a gold sphere approaching a thin vertical barrier"></canvas>
-          <p id="collision-fallback" hidden>The WebGL scene is unavailable on this device. Run either method to see its numerical result.</p>
-          <noscript><p>The endpoint check misses and ends at +3.40 m. The swept check detects contact at 57.9 ms and rebounds to −2.80 m.</p><style>#collision-canvas,#collision-controls{display:none}</style></noscript>
-        </div>
-        <div class="viewer-controls" id="collision-controls">
-          <div class="lab-buttons">
-            <button class="button button-light" type="button" id="collision-discrete">Run endpoint check</button>
-            <button class="button button-light" type="button" id="collision-swept">Run swept check</button>
-            <button class="button" type="button" id="collision-reset">Reset</button>
+        <figure class="hoop-figure">
+          <div class="viewer-stage">
+            <canvas id="hoop-canvas" role="img" aria-label="Scaled diagram of the embroidery export’s bounding box and the stitch field"></canvas>
+            <p id="hoop-fallback" hidden>The diagram is unavailable. You can still compare the measurements using the controls.</p>
+            <noscript><img src="hoop-fit.webp" alt="Diagram of the 3-inch export extending beyond the left edge of the 90 mm stitch field"></noscript>
           </div>
-          <output class="lab-result" id="collision-result" aria-live="polite">Ready. Run a method to see where the sphere ends up.</output>
-          <p>The animation slows down the step so you can inspect it. The solver uses the same simulated time in both runs.</p>
+          <figcaption>Scaled from the outer stitch bounds. The woven circle illustrates the patch shape.</figcaption>
+        </figure>
+        <div class="viewer-controls" id="hoop-controls">
+          <div><label for="hoop-export">Embroidery export</label><select id="hoop-export"><option value="small">3 inch · 76.2 × 76.2 mm</option><option value="large">Larger · 96.0 × 96.2 mm</option></select></div>
+          <div><label for="hoop-size">Stitch field</label><select id="hoop-size"><option value="90x90">90 × 90 mm</option><option value="100x100">100 × 100 mm</option><option value="130x180">130 × 180 mm</option></select></div>
+          <label class="hoop-checkbox" for="hoop-center"><input type="checkbox" id="hoop-center"> Center the design in the field</label>
+          <div class="hoop-status" id="hoop-status" data-state="overflow"><p id="hoop-result" role="status" aria-live="polite">Out of bounds by 4.4 mm on the left.</p><p id="hoop-detail">The saved origin is offset from the middle of the design.</p></div>
         </div>
       </div>
+      <noscript><style>#hoop-canvas,#hoop-controls{display:none}</style><p>In the 90 mm field, the 3-inch export extends 4.4 mm past the left edge at its saved origin. Centering gives it 6.9 mm of minimum clearance. The larger export needs a bigger field.</p></noscript>
     </div></section>
-    <section class="case-story" id="evaluation" aria-labelledby="evaluation-heading">
+    <section class="case-story" id="method" aria-labelledby="method-heading">
       <div class="wrap story-grid">
-        <div><p class="label green-label">Evaluation notes</p><h2 id="evaluation-heading">Reproduce the failure</h2></div>
+        <div><p class="label green-label">Production notes</p><h2 id="method-heading">What the check measures</h2></div>
         <div class="story-copy">
-          <h3>Set the expected behavior</h3>
-          <p>The sphere starts at −3.60 m and moves at +56 m/s toward a 0.20 m wall centered at 0 m. Its radius is 0.26 m. First contact should occur when the center reaches −0.36 m.</p>
-          <h3>Observe the endpoint check</h3>
-          <p>A sampled overlap test sees the sphere clear of the wall at both ends of the step. Its path crossed the wall between samples, so it finishes at +3.40 m without an overlap event. This is tunneling.</p>
-          <h3>Use a swept test as the reference</h3>
-          <p>Check the movement segment against the wall’s near face, offset by the sphere’s radius. The intersection gives first contact at 57.9 ms. Apply a restitution coefficient of 0.65 and use the remaining time to advance the rebound. The sphere ends at −2.80 m.</p>
-        </div>
-      </div>
-    </section>
-    <section class="case-story" id="review-result" aria-labelledby="review-result-heading">
-      <div class="wrap story-grid">
-        <div><p class="label green-label">Prototype scope</p><h2 id="review-result-heading">Review the result</h2></div>
-        <div class="story-copy">
-          <p>The two runs share geometry and simulated timing, so the solver is the variable under test. The reference is limited to a single sphere moving on one axis toward a static wall. The outcome appears in text as well as in the scene, and reduced-motion mode shows the result immediately.</p>
+          <h3>Start with the file’s origin</h3>
+          <p>The 3-inch export spans −49.4 mm to +26.8 mm horizontally. A 90 mm field extends from −45 mm to +45 mm, so the recorded placement crosses its left edge by 4.4 mm. Centering moves the bounds 11.3 mm to the right and leaves 6.9 mm to each edge.</p>
+          <h3>Compare a size change</h3>
+          <p>The larger export measures 96.0 × 96.2 mm. Even centered, it extends 3.1 mm past the 90 mm field on the vertical axis. The 100 mm field leaves 1.9 mm at its tightest edge.</p>
+          <p>This comparison uses the nominal rectangular stitch field. On the machine, confirm the working area and any required clearance for the actual setup.</p>
         </div>
       </div>
     </section>

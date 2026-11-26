@@ -70,7 +70,7 @@ section[id] { scroll-margin-top: 1rem; }
 .studies .label { color: var(--green); }
 .study-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 2.7vw, 2.6rem); }
 .study-card { display: grid; overflow: hidden; border: 1px solid #526251; border-radius: 8px; background: var(--night-light); text-decoration: none; }
-.study-card img { width: 100%; aspect-ratio: 1.94; object-fit: cover; background: #101712; }
+.study-card img { width: 100%; aspect-ratio: 1.94; object-fit: contain; background: #101712; }
 .study-card div { padding: 1rem; }
 .study-card h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
 .study-card p { color: #c9d4c7; padding-top: .35rem; }
@@ -173,22 +173,44 @@ section[id] { scroll-margin-top: 1rem; }
 
 .viewer { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(14rem, .65fr); gap: 1rem; }
 .viewer-stage { display: grid; place-items: center; position: relative; min-width: 0; min-height: 22rem; overflow: hidden; border: 1px solid #455148; border-radius: 8px; background: #101712; }
-.viewer-stage canvas { display: block; width: 100%; height: 100%; min-height: 22rem; aspect-ratio: 1.47; touch-action: pan-y; }
-.viewer-stage canvas { cursor: grab; }
-.viewer-stage canvas:active { cursor: grabbing; }
-#collision-canvas { cursor: default; }
+.viewer-stage canvas { display: block; width: 100%; min-height: 22rem; aspect-ratio: 1.47; }
 .viewer-stage img { max-height: 25rem; object-fit: contain; }
-.viewer-controls { border: 1px solid #455148; border-radius: 8px; padding: 1rem; display: flex; flex-direction: column; align-items: stretch; gap: 1.05rem; background: var(--night-light); }
-.viewer-controls label { display: flex; justify-content: space-between; gap: .65rem; font-weight: 750; }
-.viewer-controls input { width: 100%; accent-color: var(--green); }
-.viewer-controls output { color: var(--green); font-variant-numeric: tabular-nums; }
+.viewer-controls { align-self: start; border: 1px solid #455148; border-radius: 8px; padding: clamp(1rem, 3vw, 1.6rem); display: grid; gap: 1.15rem; background: var(--night-light); }
+.viewer-controls label { display: block; font-weight: 750; margin-bottom: .35rem; }
+.viewer-controls select { width: 100%; min-height: 45px; padding: .48rem 2.4rem .48rem .65rem; appearance: none; border: 1px solid #7c8978; border-radius: 5px; background: #111913; color: var(--white); font: inherit; }
+.viewer-controls div:has(> select) { position: relative; }
+.viewer-controls div:has(> select)::after { content: ''; width: .52rem; height: .52rem; border-right: 2px solid var(--green); border-bottom: 2px solid var(--green); position: absolute; right: .96rem; bottom: 1.2rem; transform: rotate(45deg); pointer-events: none; }
 .viewer-controls p { font-size: .9rem; color: #c9d4c7; }
-.viewer-controls button { align-self: flex-start; }
-.lab-buttons { display: flex; flex-wrap: wrap; gap: .55rem; }
-.lab-buttons .button:not(.button-light) { background: transparent; color: var(--white); border-color: #899787; }
-.lab-buttons .button:not(.button-light):hover { background: #374233; }
-.viewer-stage:has(canvas[hidden]) { padding: 1rem; }
-.lab-result { padding-top: .8rem; border-top: 1px solid #526251; color: #f2f8df; font-weight: 750; }
+.viewer-controls .hoop-checkbox { display: flex; gap: .55rem; align-items: start; margin: 0; cursor: pointer; }
+.hoop-checkbox input { flex: 0 0 auto; width: 1.1rem; height: 1.1rem; margin: .22rem 0 0; accent-color: var(--green); }
+.hoop-figure { min-width: 0; }
+.hoop-figure figcaption, .hoop-band noscript p { color: #c9d4c7; margin-top: .65rem; font-size: .88rem; }
+.hoop-status { padding: .75rem .8rem; border-left: 3px solid #eea88e; border-radius: 4px; background: #141b16; font-variant-numeric: tabular-nums; }
+.hoop-status[data-state='fit'] { border-color: var(--green); }
+#hoop-result { color: #ffe2d4; font-weight: 800; font-size: 1.04rem; margin-bottom: .26rem; }
+.hoop-status[data-state='fit'] #hoop-result { color: var(--green); }
+#hoop-fallback { padding: 1rem; }
+.patch-stage #patch-canvas { cursor: grab; }
+.patch-stage #patch-canvas.is-dragging { cursor: grabbing; }
+.patch-stage #patch-canvas:focus-visible { outline-offset: -4px; outline-color: var(--green); }
+#patch-fallback { padding: 1rem; text-align: center; }
+#patch-fallback img { border-radius: 50%; max-width: min(100%, 22rem); }
+.viewer-controls .patch-view-label { font: inherit; font-weight: 750; color: var(--white); margin-bottom: .45rem; }
+.patch-views { display: flex; flex-wrap: wrap; gap: .45rem; }
+.patch-views .button, #patch-reset { color: var(--white); background: transparent; border-color: #7c8978; }
+.patch-views .button:hover, #patch-reset:hover { background: #374233; }
+.patch-views [aria-pressed='true'] { color: var(--ink); background: var(--green); border-color: var(--green); }
+.patch-views [aria-pressed='true']:hover { background: #efffcf; }
+#patch-reset, #sequence-play { justify-self: start; }
+.viewer-controls .range-heading { display: flex; flex-wrap: wrap; justify-content: space-between; column-gap: .5rem; }
+.viewer-controls input[type='range'] { width: 100%; min-height: 28px; margin: 0; accent-color: var(--green); }
+.range-heading output { font-variant-numeric: tabular-nums; color: var(--green); }
+.sequence-stage { min-height: 0; }
+.sequence-stage #sequence-canvas, .sequence-stage #sequence-poster { width: min(100%, 540px); min-height: 0; max-height: none; height: auto; aspect-ratio: 1; }
+.sequence-meta { padding-top: .8rem; border-top: 1px solid #526251; }
+.sequence-meta p + p { margin-top: .35rem; }
+.doom-reference .lightbox-trigger { background: #fff; }
+.doom-reference .lightbox-trigger img { background: #fff; aspect-ratio: 1.2; }
 
 @media (max-width: 930px) {
   .hero-grid { gap: 2rem; }
@@ -211,6 +233,8 @@ section[id] { scroll-margin-top: 1rem; }
   .monogram { width: 1.8rem; height: 1.8rem; font-size: .67rem; }
   .site-nav { gap: .72rem; }
   .site-nav a { font-size: .83rem; }
+  .site-head .wrap:has(.review-nav) { flex-wrap: wrap; padding-block: .68rem; }
+  .review-nav { flex-wrap: wrap; }
   .case-facts, .project-grid, .artifact-grid, .study-grid { grid-template-columns: 1fr; }
   .case-facts { gap: .85rem; }
   .case-facts dd { margin-top: .12rem; }

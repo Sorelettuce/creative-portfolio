@@ -8,7 +8,8 @@
   <title>Digital to physical | Jennifer Raymond</title>
   <link rel="stylesheet" href="styles.css">
   <script src="site.js" defer></script>
-  <script src="stitch-viewer.js" defer></script>
+  <script src="patch-viewer.js" defer></script>
+  <script src="stitch-sequence.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -25,11 +26,36 @@
   <main id="main">
     <div class="case-top wrap">
       <a href="index.html#work" class="crumb text-link">All projects</a>
-      <p class="label green-label">Machine embroidery · Real-time web visualization</p>
+      <p class="label green-label">Machine embroidery · Web visualization</p>
       <h1>Digital to physical</h1>
       <p class="lede">A Hatch preview and a finished patch make it possible to compare stitch texture, edge definition, and contrast across a digital file and a physical object.</p>
-      <dl class="case-facts"><div><dt class="label">Context</dt><dd>My Threaded Heart</dd></div><div><dt class="label">My contribution</dt><dd>Hatch adaptation, patch production and photography</dd></div><div><dt class="label">Media</dt><dd>Hatch TrueView, finished stitch-out, WebGL study</dd></div></dl>
+      <dl class="case-facts"><div><dt class="label">Context</dt><dd>My Threaded Heart</dd></div><div><dt class="label">My contribution</dt><dd>Hatch adaptation, patch production and photography</dd></div><div><dt class="label">Media</dt><dd>Hatch TrueView, 3D inspection and stitch playback</dd></div></dl>
     </div>
+    <section class="demo-band" id="viewer" aria-labelledby="viewer-heading"><div class="wrap">
+      <div class="artifact-heading">
+        <p class="label">Photo-textured 3D model</p><h2 id="viewer-heading">Inspect the finished patch</h2>
+        <p>Look closely at the satin lettering and the raised border. The front is textured from the original product photo. The edge and back are modeled.</p>
+      </div>
+      <div class="viewer">
+        <figure class="hoop-figure">
+          <div class="viewer-stage patch-stage">
+            <canvas id="patch-canvas" tabindex="0" role="img" width="960" height="640" data-texture="patch-front-texture.webp" aria-label="Rotatable model of the real Be Different embroidered patch" aria-describedby="patch-instructions" hidden></canvas>
+            <figure id="patch-fallback"><img src="patch-front-texture.webp" alt="Original photograph of the black patch with orange mirrored stitching"><figcaption>Front photograph of the finished patch</figcaption></figure>
+          </div>
+          <figcaption>Be Different patch · My Threaded Heart</figcaption>
+        </figure>
+        <div class="viewer-controls" id="patch-controls" hidden>
+          <div><p class="patch-view-label">View from</p><div class="patch-views" role="group" aria-label="Patch viewing angle">
+            <button class="button" type="button" data-patch-view="front" aria-pressed="false">Front</button>
+            <button class="button" type="button" data-patch-view="edge" aria-pressed="false">Edge</button>
+            <button class="button" type="button" data-patch-view="back" aria-pressed="false">Back</button>
+          </div></div>
+          <div><label for="patch-zoom" class="range-heading">Zoom <output id="patch-zoom-value" for="patch-zoom">115%</output></label><input id="patch-zoom" type="range" min="100" max="280" value="115" step="1"></div>
+          <p id="patch-instructions">Drag or use the arrow keys to rotate. Pinch or use the slider to zoom. To pan a close-up, move two fingers together or hold Shift while dragging or pressing an arrow key.</p>
+          <button class="button" type="button" id="patch-reset">Reset view</button>
+        </div>
+      </div>
+    </div></section>
     <section class="artifact-band" aria-labelledby="gallery-heading"><div class="wrap">
       <div class="artifact-heading"><p class="label green-label">Project gallery</p><h2 id="gallery-heading">One design, two colorways</h2><p>This fabrication study follows a sourced motif. The Hatch preview and the finished piece share the circular border and mirrored lettering, with different thread colorways.</p></div>
       <div class="artifact-grid"><figure>
@@ -59,6 +85,37 @@
         </div>
       </div>
     </section>
+    <section class="demo-band sequence-band" id="stitch-sequence" aria-labelledby="sequence-heading"><div class="wrap">
+      <div class="artifact-heading"><p class="label">Machine stitch playback</p><h2 id="sequence-heading">See how the design stitches</h2>
+        <p>Replay the recorded stitch order. Pause or scrub to inspect a layer before the next one covers it.</p></div>
+      <div class="viewer">
+        <figure class="hoop-figure">
+          <div class="viewer-stage sequence-stage">
+            <canvas id="sequence-canvas" role="img" width="400" height="400" aria-label="Stitch sequence playback" hidden></canvas>
+            <img id="sequence-poster" src="be-different-stitches.webp" width="400" height="400" alt="Complete stitch path for Be Different" loading="lazy">
+          </div>
+          <figcaption>Grid spacing is 20 mm. DST previews use illustrative colors for thread changes.</figcaption>
+        </figure>
+        <div class="viewer-controls">
+          <div><label for="sequence-design">Embroidery design</label><select id="sequence-design">
+            <option data-atlas="be-different-sequence.webp" data-preview="be-different-stitches.webp" data-dimensions="76.2 × 76.2" data-format="DST" data-stitches="4334" data-credit="Archived production export for the finished Be Different patch.">Be Different</option>
+            <option data-atlas="doctor-doom-sequence.webp" data-preview="doctor-doom-stitches.webp" data-dimensions="87.0 × 101.8" data-format="DST" data-stitches="20895" data-credit="Supplied Doctor Doom design sample. Character by Marvel.">Doctor Doom · figure</option>
+            <option data-atlas="doom-face-sequence.webp" data-preview="doom-face-stitches.webp" data-dimensions="78.0 × 85.2" data-format="DST" data-stitches="23361" data-credit="Supplied Doctor Doom face design. Its stitched reference is below. Character by Marvel.">Doctor Doom · face</option>
+            <option data-atlas="xmen-sequence.webp" data-preview="xmen-stitches.webp" data-dimensions="38.2 × 38.2" data-format="JEF" data-stitches="9806" data-credit="Supplied X-Men emblem sample. The playback uses the thread colors recorded in the JEF.">X-Men emblem</option>
+          </select></div>
+          <div><label for="sequence-progress" class="range-heading">Progress <output id="sequence-value" for="sequence-progress">100% · 4,334 stitches</output></label><input id="sequence-progress" type="range" min="0" max="20" value="20" disabled></div>
+          <button class="button button-light" type="button" id="sequence-play" disabled>Play stitch sequence</button>
+          <div class="sequence-meta"><p id="sequence-details">DST · 76.2 × 76.2 mm · 4,334 stitch commands</p><p id="sequence-note">Archived production export for the finished Be Different patch.</p></div>
+        </div>
+      </div>
+    </div></section>
+    <section class="artifact-band" aria-labelledby="doom-reference-heading"><div class="wrap story-grid">
+      <div class="artifact-heading"><p class="label green-label">Supplied design reference</p><h2 id="doom-reference-heading">Doctor Doom face</h2><p>Compare the face design’s green hood, silver mask and fine details with its machine-file playback above. Doctor Doom is a Marvel character.</p></div>
+      <div class="artifact-grid doom-reference"><figure>
+      <a class="lightbox-trigger" data-fit="contain" href="doom-face-reference.webp" aria-label="Enlarge Doctor Doom face · Stitch reference"><img src="doom-face-reference.webp" alt="Detailed embroidery reference of the Doctor Doom face in a green hood" loading="lazy"></a>
+      <figcaption><strong>Doctor Doom face · Stitch reference</strong>Reference image supplied with the face design.</figcaption>
+    </figure></div>
+    </div></section>
     <section class="artifact-band" id="hatch-file" aria-labelledby="hatch-file-heading"><div class="wrap story-grid">
       <div class="artifact-heading">
         <p class="label green-label">File study · Hatch embroidery</p>
@@ -71,33 +128,12 @@
       <figcaption><strong>Revive.EMB · Embedded TrueView</strong>Preview extracted from the native project file.</figcaption>
     </figure></div>
     </div></section>
-    <section class="demo-band" id="viewer" aria-labelledby="viewer-heading"><div class="wrap">
-      <div class="artifact-heading">
-        <p class="label">Real-time 3D · Portfolio demo</p>
-        <h2 id="viewer-heading">Explore a stitched surface</h2>
-        <p>This WebGL swatch uses sample geometry built for this portfolio with Codex. Rotate it to see stitch height, or scrub through the order in which the rows appear.</p>
-      </div>
-      <div class="viewer">
-        <div class="viewer-stage">
-          <canvas id="stitch-canvas" role="img" aria-label="Rotatable three-dimensional embroidery swatch with a raised border around rows of stitches"></canvas>
-          <img id="stitch-fallback" src="stitch-swatch.webp" alt="Still of the completed embroidery swatch shown at an angle" hidden>
-          <noscript><img src="stitch-swatch.webp" alt="Still of the completed embroidery swatch shown at an angle"></noscript>
-        </div>
-        <div class="viewer-controls" id="stitch-controls">
-          <div><label for="stitch-progress">Stitch progress <output id="stitch-count" for="stitch-progress">100%</output></label><input type="range" id="stitch-progress" min="0" max="100" value="100"></div>
-          <div><label for="stitch-turn">Rotation <output id="stitch-angle" for="stitch-turn">-26°</output></label><input type="range" id="stitch-turn" min="-75" max="75" value="-26"></div>
-          <button class="button button-light" type="button" id="stitch-reset">Reset view</button>
-          <p>Drag the swatch to turn it. Use the sliders with the keyboard to rotate it or reveal successive passes.</p>
-        </div>
-      </div>
-      <noscript><style>#stitch-canvas,#stitch-controls{display:none}</style></noscript>
-    </div></section>
-    <section class="case-story" id="implementation" aria-labelledby="implementation-heading">
+    <section class="case-story" id="setup" aria-labelledby="setup-heading">
       <div class="wrap story-grid">
-        <div><p class="label green-label">WebGL implementation</p><h2 id="implementation-heading">How the viewer works</h2></div>
+        <div><p class="label green-label">Embroidery setup study</p><h2 id="setup-heading">From file to hoop</h2></div>
         <div class="story-copy">
-          <p>Each sample strand is a short strip of triangles that rises from the fabric and falls back into it. The viewer draws the fabric first and adds the strands in sequence as the progress slider moves. A depth buffer keeps the raised geometry in view as the swatch turns.</p>
-          <p>The model redraws when it receives input or when its viewport changes. Browser tests confirmed that rotation and progress changed the render, reset restored the opening view, and a still appeared when WebGL was unavailable.</p>
+          <p>The smaller export is 76.2 mm wide, yet its recorded origin is off-center. Place that origin at the center of a 90 × 90 mm stitch field and the left edge falls 4.4 mm outside it. Centering the design envelope gives it 6.9 mm of minimum clearance.</p>
+          <p><a class="button" href="lab.html#hoop-fit">Try both archived exports</a></p>
         </div>
       </div>
     </section>
